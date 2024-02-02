@@ -1,6 +1,6 @@
 {
   "name": "unscene",
-  "type": "module",
+  "license": "MIT",
   "version": "0.0.1",
   "homepage": "https://unscene.vercel.app",
   "description": "2D graphics library for the web",
@@ -12,6 +12,7 @@
     "url": "https://matthew.wagerfield.com"
   },
   "keywords": [
+    "2D",
     "graphics",
     "drawing",
     "canvas",
@@ -19,12 +20,27 @@
     "webgl",
     "svg"
   ],
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "main": "./dist/unscene.cjs",
+  "module": "./dist/unscene.js",
+  "types": "./dist/unscene.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/unscene.js",
+      "require": "./dist/unscene.cjs"
+    }
+  },
   "scripts": {
     "dev": "astro dev",
     "check": "astro check",
     "build": "astro check && astro build",
     "clean": "rm -rf .astro .vercel dist",
-    "preview": "astro preview"
+    "format:check": "prettier --check .",
+    "preview": "astro preview",
+    "pkg": "vite build"
   },
   "prettier": {
     "semi": false
@@ -35,5 +51,10 @@
     "astro": "4.3.1",
     "sharp": "0.33.2",
     "typescript": "5.3.3"
+  },
+  "devDependencies": {
+    "prettier": "3.2.4",
+    "vite": "5.0.12",
+    "vite-plugin-dts": "3.7.2"
   }
 }
