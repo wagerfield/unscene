@@ -2,6 +2,23 @@
   "name": "unscene",
   "type": "module",
   "version": "0.0.1",
+  "homepage": "https://unscene.vercel.app",
+  "description": "2D graphics library for the web",
+  "repository": "https://github.com/wagerfield/unscene.git",
+  "bugs": "https://github.com/wagerfield/unscene/issues",
+  "author": {
+    "name": "Matthew Wagerfield",
+    "email": "matthew@wagerfield.com",
+    "url": "https://matthew.wagerfield.com"
+  },
+  "keywords": [
+    "graphics",
+    "drawing",
+    "canvas",
+    "webgpu",
+    "webgl",
+    "svg"
+  ],
   "scripts": {
     "dev": "astro dev",
     "check": "astro check",
