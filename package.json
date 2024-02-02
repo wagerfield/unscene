@@ -26,7 +26,7 @@
   "type": "module",
   "main": "./dist/unscene.cjs",
   "module": "./dist/unscene.js",
-  "types": "./dist/unscene.d.ts",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/unscene.js",
