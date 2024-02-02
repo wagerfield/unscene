@@ -5,6 +5,7 @@ export default defineConfig({
   plugins: [
     dts({
       include: ["src/unscene/*.ts"],
+      exclude: ["src/unscene/*.spec.ts"],
     }),
   ],
   build: {
