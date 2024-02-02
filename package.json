@@ -34,13 +34,15 @@
     }
   },
   "scripts": {
+    "test": "vitest",
     "dev": "astro dev",
     "check": "astro check",
     "build": "astro check && astro build",
     "clean": "rm -rf .astro .vercel dist",
-    "format:check": "prettier --check .",
+    "format": "prettier --write .",
     "preview": "astro preview",
-    "pkg": "vite build"
+    "package": "vite build",
+    "release": "release-it"
   },
   "prettier": {
     "semi": false
@@ -54,7 +56,9 @@
   },
   "devDependencies": {
     "prettier": "3.2.4",
+    "release-it": "17.0.3",
     "vite": "5.0.12",
-    "vite-plugin-dts": "3.7.2"
+    "vite-plugin-dts": "3.7.2",
+    "vitest": "1.2.2"
   }
 }

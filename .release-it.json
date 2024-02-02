@@ -1,0 +1,21 @@
+{
+  "git": {
+    "requireBranch": "main",
+    "commitMessage": "chore: release v${version}"
+  },
+  "hooks": {
+    "before:init": [
+      "git pull",
+      "bun clean",
+      "bun package",
+      "bun format",
+      "bun test"
+    ]
+  },
+  "github": {
+    "release": true
+  },
+  "npm": {
+    "publish": true
+  }
+}
