@@ -3,7 +3,7 @@ import type { Nil } from "./types"
 
 export function assertUndefined<T>(
   value: T | undefined,
-  error = "value undefined"
+  error = "value undefined",
 ): T {
   if (!isUndefined(value)) return value
   throw new Error(error)

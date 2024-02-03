@@ -2,7 +2,7 @@ export type Iterator<T, U> = (
   item: T,
   index: number,
   length: number,
-  list: T[]
+  list: T[],
 ) => U
 
 export function each<T, U>(list: T[], fn: Iterator<T, U>): void {
