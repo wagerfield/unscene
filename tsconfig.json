@@ -1,6 +1,7 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
+    "types": ["@webgpu/types"],
     "baseUrl": ".",
     "paths": {
       "unscene": ["src/unscene/index.ts"],
