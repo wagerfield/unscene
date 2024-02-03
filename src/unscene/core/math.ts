@@ -67,5 +67,5 @@ export const mapScale = (
   min1: number,
   max1: number,
   min2: number,
-  max2: number
+  max2: number,
 ) => interpolate(normalize(value, min1, max1), min2, max2)
