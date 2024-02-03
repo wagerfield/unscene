@@ -4,8 +4,8 @@ import dts from "vite-plugin-dts"
 export default defineConfig({
   plugins: [
     dts({
-      include: ["src/unscene/*.ts"],
-      exclude: ["src/unscene/*.spec.ts"],
+      include: ["src/unscene/**/*.ts"],
+      exclude: ["src/unscene/**/*.spec.ts"],
     }),
   ],
   build: {
