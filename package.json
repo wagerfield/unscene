@@ -1,7 +1,7 @@
 {
   "name": "unscene",
   "license": "MIT",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "homepage": "https://unscene.vercel.app",
   "description": "2D graphics library for the web",
   "repository": "https://github.com/wagerfield/unscene.git",
