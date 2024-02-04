@@ -1,10 +1,12 @@
 {
   "extends": "astro/tsconfigs/strict",
+  "exclude": ["node_modules", "dist"],
   "compilerOptions": {
     "types": ["@webgpu/types"],
     "baseUrl": ".",
     "paths": {
-      "unscene": ["src/unscene/index.ts"],
+      "@components/*": ["src/components/*"],
+      "unscene": ["src/lib/index.ts"],
     },
   },
 }
