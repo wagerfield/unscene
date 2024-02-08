@@ -50,7 +50,6 @@ export class Bounds {
   set x(value: number) {
     this.setPosition(value, this.tl.y)
   }
-
   get x() {
     return this.tl.x
   }
@@ -58,7 +57,6 @@ export class Bounds {
   set y(value: number) {
     this.setPosition(this.tl.x, value)
   }
-
   get y() {
     return this.tl.y
   }
@@ -66,7 +64,6 @@ export class Bounds {
   set width(value: number) {
     this.setSize(value, this.size.y)
   }
-
   get width() {
     return this.size.x
   }
@@ -74,7 +71,6 @@ export class Bounds {
   set height(value: number) {
     this.setSize(this.size.x, value)
   }
-
   get height(): number {
     return this.size.y
   }

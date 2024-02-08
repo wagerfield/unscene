@@ -50,7 +50,6 @@ export class Vector {
   set x(value: number) {
     this.vector[0] = value
   }
-
   get x(): number {
     return this.vector[0]
   }
@@ -58,7 +57,6 @@ export class Vector {
   set y(value: number) {
     this.vector[1] = value
   }
-
   get y(): number {
     return this.vector[1]
   }
