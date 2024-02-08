@@ -19,6 +19,14 @@ export abstract class CanvasRenderer extends Renderer {
     this.scale = options.scale ?? this._maxScale
   }
 
+  protected onResize(width: number, height: number) {
+    this.element.style.width = px(width)
+    this.element.style.height = px(height)
+
+    this.element.width = width * this.scale
+    this.element.height = height * this.scale
+  }
+
   get scale(): number {
     return this._scale
   }
@@ -26,13 +34,5 @@ export abstract class CanvasRenderer extends Renderer {
     if (this._scale === value) return
     this._scale = clamp(value, this._minScale, this._maxScale)
     this.onResize(this.width, this.height)
-  }
-
-  protected onResize(width: number, height: number) {
-    this.element.style.width = px(width)
-    this.element.style.height = px(height)
-
-    this.element.width = width * this.scale
-    this.element.height = height * this.scale
   }
 }
