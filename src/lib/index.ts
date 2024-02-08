@@ -8,6 +8,7 @@ export * from "./core/guard"
 export * from "./core/assert"
 
 // Math
+export * from "./math/Color"
 export * from "./math/Vector"
 export * from "./math/Matrix"
 export * from "./math/Anchor"
