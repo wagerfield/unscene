@@ -35,8 +35,9 @@
     }
   },
   "scripts": {
+    "dev": "vite",
     "test": "vitest",
-    "dev": "astro dev",
+    "docs": "astro dev",
     "check": "astro check",
     "build": "astro check && astro build",
     "clean": "rm -rf .astro .vercel dist",
