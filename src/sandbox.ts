@@ -4,6 +4,7 @@ import {
   Vector,
   Ellipse,
   Rectangle,
+  Superellipse,
   Canvas2DRenderer,
   type FillStyle,
 } from "./lib"
@@ -32,9 +33,22 @@ const oval = new Ellipse({
   y: 80,
 })
 
+const squircle = new Superellipse({
+  fillStyle: "ivory",
+  rotation: 20,
+  divisions: 32,
+  originX: -100,
+  originY: -100,
+  radiusX: 100,
+  radiusY: 100,
+  x: 200,
+  y: 200,
+})
+
 const mouse = new Vector()
 const scene = new Scene()
 
+scene.addChild(squircle)
 scene.addChild(box1)
 box1.addChild(box2)
 box2.addChild(oval)
@@ -65,8 +79,8 @@ clock.on("tick", ({ time }) => {
   const cx = renderer.width / 2
   const cy = renderer.height / 2
 
-  // const rx = (renderer.width - box1.width) / 2
-  // const ry = (renderer.height - box1.height) / 2
+  const rx = (renderer.width - box1.width) / 2
+  const ry = (renderer.height - box1.height) / 2
 
   const defaultFillStyle: FillStyle = "ivory"
   const activeFillStyle: FillStyle = "tomato"
@@ -80,9 +94,17 @@ clock.on("tick", ({ time }) => {
   box2.rotation = time / 30
   oval.rotation = time / 40
 
+  squircle.x = cx + Math.cos(time / 1600) * rx
+  squircle.y = cy + Math.sin(time / 1900) * ry
+  squircle.exponent = 4 + Math.sin(time / 1000) * 4
+  squircle.rotation = time / 20
+
   box1.fillStyle = box1.contains(mouse) ? activeFillStyle : defaultFillStyle
   box2.fillStyle = box2.contains(mouse) ? activeFillStyle : defaultFillStyle
   oval.fillStyle = oval.contains(mouse) ? activeFillStyle : defaultFillStyle
+  squircle.fillStyle = squircle.contains(mouse)
+    ? activeFillStyle
+    : defaultFillStyle
 
   renderer.render(scene)
 })
