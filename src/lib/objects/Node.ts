@@ -71,10 +71,21 @@ export abstract class Node extends Container<Node> {
   }
 
   private updateLocalMatrix() {
+    this.localMatrix.copy(this._originMatrix)
+
+    if (this.scaleX !== 1 && this.scaleY !== 1) {
+      this.localMatrix.multiplySelf(this._scaleMatrix)
+    }
+
+    if (this.rotation % 360) {
+      this.localMatrix.multiplySelf(this._rotationMatrix)
+    }
+
+    if (this.x || this.y) {
+      this.localMatrix.multiplySelf(this._positionMatrix)
+    }
+
     return this.localMatrix
-      .multiply(this._originMatrix, this._scaleMatrix)
-      .multiplySelf(this._rotationMatrix)
-      .multiplySelf(this._positionMatrix)
   }
 
   private updateWorldMatrix() {
@@ -90,28 +101,28 @@ export abstract class Node extends Container<Node> {
   // Transform
 
   setPosition(x = 0, y = x): void {
-    if (this.position.equals(x, y)) return
+    if (this.locked || this.position.equals(x, y)) return
     this.position.set(x, y)
     this._positionMatrix.fromPosition(this.position)
     this.updateLocalMatrix()
   }
 
   setOrigin(x = 0, y = x): void {
-    if (this.origin.equals(x, y)) return
+    if (this.locked || this.origin.equals(x, y)) return
     this.origin.set(x, y)
     this._originMatrix.fromPosition(this.origin)
     this.updateLocalMatrix()
   }
 
   setScale(x = 1, y = x): void {
-    if (this.scale.equals(x, y)) return
+    if (this.locked || this.scale.equals(x, y)) return
     this.scale.set(x, y)
     this._scaleMatrix.fromScale(this.scale)
     this.updateLocalMatrix()
   }
 
   setRotation(degrees = 0): void {
-    if (this._rotationVector.xEquals(degrees)) return
+    if (this.locked || this._rotationVector.xEquals(degrees)) return
     this._rotationVector.set(degrees, degToRad(degrees % 360))
     this._rotationMatrix.fromRotation(this._rotationVector.y)
     this.updateLocalMatrix()
