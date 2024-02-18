@@ -7,30 +7,26 @@ export const pointInBounds = (point: Vector, bounds: Bounds) =>
   point.y >= bounds.tl.y &&
   point.y <= bounds.br.y
 
-export function pointInEllipse(
+export function pointInSuperellipse(
+  exponent: number,
   point: Vector,
   radius: Vector,
   center: Vector = radius,
-  rotation = 0, // radians
 ) {
   const dx = point.x - center.x
   const dy = point.y - center.y
 
-  const rxs = radius.x * radius.x
-  const rys = radius.y * radius.y
+  const x = Math.abs(dx / radius.x)
+  const y = Math.abs(dy / radius.y)
 
-  if (!rotation || radius.x === radius.y) {
-    return (dx * dx) / rxs + (dy * dy) / rys <= 1
-  }
-
-  const cos = Math.cos(rotation)
-  const sin = Math.sin(rotation)
-
-  const tx = cos * dx + sin * dy
-  const ty = sin * dx - cos * dy
-
-  return (tx * tx) / rxs + (ty * ty) / rys <= 1
+  return x ** exponent + y ** exponent <= 1
 }
+
+export const pointInEllipse = (
+  point: Vector,
+  radius: Vector,
+  center: Vector = radius,
+) => pointInSuperellipse(2, point, radius, center)
 
 const radiusVector = new Vector()
 const innerBounds = new Bounds()
