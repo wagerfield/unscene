@@ -1,5 +1,5 @@
 import { assertNull } from "../core/assert"
-import { each } from "../core/loop"
+import { each, eachBy } from "../core/loop"
 import { PI2 } from "../core/math"
 
 import { Node } from "../objects/Node"
@@ -9,6 +9,7 @@ import { Shape } from "../shapes/Shape"
 import { Point } from "../shapes/Point"
 import { Ellipse } from "../shapes/Ellipse"
 import { Rectangle } from "../shapes/Rectangle"
+import { Superellipse } from "../shapes/Superellipse"
 
 import { CanvasRenderer } from "./CanvasRenderer"
 
@@ -38,6 +39,12 @@ export class Canvas2DRenderer extends CanvasRenderer {
       this._context.ellipse(rx, ry, rx, ry, 0, 0, PI2)
     }
 
+    if (node instanceof Superellipse) {
+      eachBy(2, node.points, (x, i, l, a) => {
+        this._context[i ? "lineTo" : "moveTo"](x, a[i + 1])
+      })
+    }
+
     if (node instanceof Rectangle) {
       this._context.roundRect(0, 0, node.width, node.height, node.radius)
     }
@@ -57,12 +64,22 @@ export class Canvas2DRenderer extends CanvasRenderer {
       }
     }
 
-    each(node.children, this.renderChild)
+    if (node.children.length) {
+      each(node.children, this.renderChild)
+    }
   }
 
   render(scene: Scene): void {
     this._context.reset()
+    this._context.scale(this.scale, this.scale)
+
+    if (this.fillStyle) {
+      this._context.fillStyle = this.fillStyle
+      this._context.fillRect(0, 0, this.width, this.height)
+    }
+
     scene.setScale(this.scale)
+
     this.renderChild(scene)
   }
 }
