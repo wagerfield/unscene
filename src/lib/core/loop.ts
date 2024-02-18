@@ -1,18 +1,30 @@
+export interface ArrayLike<T> {
+  length: number
+  [index: number]: T
+}
+
 export type Iterator<T, U> = (
   item: T,
   index: number,
   length: number,
-  list: T[],
+  array: ArrayLike<T>,
 ) => U
 
-export function each<T, U>(list: T[], fn: Iterator<T, U>): void {
-  for (let i = 0, l = list.length; i < l; ++i) fn(list[i], i, l, list)
+export function eachBy<T, U>(
+  inc: number,
+  arr: ArrayLike<T>,
+  fn: Iterator<T, U>,
+): void {
+  for (let i = 0, l = arr.length; i < l; i += inc) fn(arr[i], i, l, arr)
 }
 
-export function map<T, U>(list: T[], fn: Iterator<T, U>): U[] {
+export const each = <T, U>(array: ArrayLike<T>, fn: Iterator<T, U>) =>
+  eachBy(1, array, fn)
+
+export function map<T, U>(array: ArrayLike<T>, fn: Iterator<T, U>): U[] {
   const result: U[] = []
-  each(list, (item, index, length) => {
-    result.push(fn(item, index, length, list))
+  each(array, (item, index, length) => {
+    result.push(fn(item, index, length, array))
   })
   return result
 }
